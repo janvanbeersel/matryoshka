@@ -1,0 +1,21 @@
+{
+    "name": "Jvbdevel/Dolly",
+    "description": "Russian Doll Caching for Laravel",
+    "license": "MIT",
+	"keywords": ["laravel","cache"],
+    "authors": [
+        {
+            "name": "janvanbeersel",
+            "email": "mr@jvbdevel.be"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "illuminate/support": "^5.2"
+    },
+	"autoload": {
+		"psr-4": {
+			"jvbdevel\\Dolly\\": "src/"
+		}
+	}
+}
