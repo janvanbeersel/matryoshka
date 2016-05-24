@@ -1,6 +1,6 @@
 <?php
 
-namespace Jvbdevel\Dolly;
+namespace Jvbdevel\Matryoshka;
 
 trait Cacheable
 {

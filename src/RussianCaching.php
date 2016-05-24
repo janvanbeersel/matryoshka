@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace Jvbdevel\Dolly;
+namespace Jvbdevel\Matryoshka;
 
 use Illuminate\Contracts\Cache\Repository as Cache;
 use Illuminate\Database\Eloquent\Model;

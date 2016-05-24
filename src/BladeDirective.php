@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace Jvbdevel\Dolly;
+namespace Jvbdevel\Matryoshka;
 
 /**
  * Description of BladeDirective
