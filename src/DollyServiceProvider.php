@@ -15,28 +15,15 @@ class DollyServiceProvider extends ServiceProvider
     public function boot()
     {
         Blade::directive('cache',function($expression) {
-            return "<?php if (! Jvbdevel\Dolly\RussianCaching::setUp{$expression}) { ?> ";  // setup($card) 
+            return "<?php if (! app('Jvbdevel\Dolly\BladeDirective')->setUp{$expression}) { ?> ";  // setup($card) 
            
         });
         
          Blade::directive('endcache',function() {
-            return "<?php echo }; Jvbdevel\Dolly\RussianCaching::resolve(); ?> ";  // setup($card) 
+            return "<?php echo }; app('Jvbdevel\Dolly\BladeDirective')->tearDown(); ?> ";  // setup($card) 
            
         });
         
-//        Blade::directive('cache',function($expression) {
-//            return "<?= RussianDollCaching::setUp{$expression};  ";  // setup($card) 
-//           
-//        });
-//        
-//         Blade::directive('endcache',function($expression) {
-//            return "<?= RussianDollCaching::setUp{$expression};  ";  // setup($card) 
-//           
-//        });
-//        Blade::directive('ago',function($expression) {
-//            return "<?= with{$expression}->updated_at->diffForHumans(); "; // setup($card) 
-//           
-//        });
     }
     /**
      * Register any application services.
@@ -45,6 +32,8 @@ class DollyServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(BladeDirective::class, function() {
+            return new BladeDirective;
+        });
     }
 }

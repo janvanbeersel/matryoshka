@@ -8,7 +8,8 @@
 
 namespace Jvbdevel\Dolly;
 
-use Cache;
+use Illuminate\Contracts\Cache\Repository as Cache;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Description of RussianCaching
@@ -17,37 +18,39 @@ use Cache;
  */
 class RussianCaching
 {
-    protected static $keys=[];
 
+  
+    protected $cache;
 
-    public static function setUp($model)
+    public function __construct(Cache $cache)
     {
+        $this->cache = $cache;
+    }
 
-        static::$keys[] = $key = $model->getCacheKey();
-//        static::$keys[] = $key = 'foo';
-        
-        // turn on output buffering
-        ob_start();
-        
-        // return a boolean that indecates if we have cached this model yet
-//       return Cache::tags('views')->has($key);
-        return Cache::has($key);
-    }
-    public static function resolve()
+ 
+    public function put($key, $fragment)
     {
-        // fetch the cache key
-        $key = array_pop(static::$keys);
-        
-        // save the output buffer contents to a vaiable, called $html
-        $html = ob_get_clean();    
-        
-        // cache it, if necessary, and echo out the html
-//        return Cache::tags('views')->rememberForever($key, function() use ($html) {
-//            return $html;
-//        });
-//     
-        return Cache::rememberForever($key, function() use ($html) {
-            return $html;
-        });
+        $key=$this->normalizeCacheKey($key);
+        return $this->cache
+                        ->rememberForever($key, function() use ($fragment) {
+                            return $fragment;
+                        });
     }
+
+    public function has($key)
+    {
+        $key=$this->normalizeCacheKey($key);
+       
+        return $this->cache->has($key);
+    }
+    
+    protected function normalizeCacheKey($key)
+    {
+         if ($key instanceof Model) {
+            return $key->getCacheKey();
+        }
+        return $key;
+    }
+    
+
 }

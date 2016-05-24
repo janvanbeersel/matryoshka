@@ -15,7 +15,15 @@
     },
 	"autoload": {
 		"psr-4": {
-			"jvbdevel\\Dolly\\": "src/"
+			"Jvbdevel\\Dolly\\": "src/"
 		}
-	}
+	},
+        "autoload-dev": {
+          "classmap": ["tests/TestCase.php"]  
+        },
+    "require-dev": {
+        "phpunit/phpunit": "^5.3",
+        "Illuminate/database": "^5.2",
+        "illuminate/cache": "^5.2"
+    }
 }
