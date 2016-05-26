@@ -5,7 +5,7 @@ namespace Jvbdevel\Matryoshka;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
-class DollyServiceProvider extends ServiceProvider
+class MatryoshkaServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
