@@ -20,7 +20,7 @@ class DollyServiceProvider extends ServiceProvider
         });
         
          Blade::directive('endcache',function() {
-            return "<?php echo }; app('Jvbdevel\Matryoshka\BladeDirective')->tearDown(); ?> ";  // setup($card) 
+            return "<?php  }; echo app('Jvbdevel\Matryoshka\BladeDirective')->tearDown(); ?> ";  // setup($card) 
            
         });
         
